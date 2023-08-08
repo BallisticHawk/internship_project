@@ -4,7 +4,9 @@ import { useEffect } from 'react';
 
 export default function Home() {
   useEffect(() => {
-    trigger(); // Call the trigger function on the client side
+    if (typeof window !== 'undefined') {
+      trigger(); // Call the trigger function on the client side
+    }
   }, []);
 
   return (
