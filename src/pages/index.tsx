@@ -46,15 +46,12 @@ export default function Home() {
   );
 }
 
-declare global {
-  interface Window {
-    botpressWebChat: any; 
-  }
-}
 
-function trigger(): void {
-  if (typeof window !== 'undefined') {
-    window.botpressWebChat.sendEvent({ type: "show" });
-    window.botpressWebChat.sendPayload({ type: "text", text: "Hello there!" });
+
+export function trigger(): void {
+  if (typeof window !== 'undefined' && (window as any).botpressWebChat) {
+    const botpressWebChat = (window as any).botpressWebChat;
+    botpressWebChat.sendEvent({ type: "show" });
+    botpressWebChat.sendPayload({ type: "text", text: "Hello there!" });
   }
 }
