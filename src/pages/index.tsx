@@ -1,8 +1,12 @@
 import Head from "next/head";
 import Link from "next/link";
+import { useEffect } from 'react';
 
 export default function Home() {
-    trigger();  
+  useEffect(() => {
+    trigger(); // Call the trigger function on the client side
+  }, []);
+
   return (
     <>
       <Head>
@@ -40,7 +44,6 @@ export default function Home() {
         </div>
         <script src="https://cdn.botpress.cloud/webchat/v0/inject.js"></script>
         <script src="https://mediafiles.botpress.cloud/74d99ce9-fd19-4c81-a073-a9490f4aa12a/webchat/config.js" defer></script>
-            
       </main>
     </>
   );
@@ -58,7 +61,7 @@ interface BotpressWebChatMethods {
 }
 
 function trigger(): void {
-  if (window?.botpressWebChat) {
+  if (typeof window !== 'undefined' && window.botpressWebChat) {
     window.botpressWebChat?.sendEvent?.({ type: "show" });
     window.botpressWebChat?.sendPayload?.({ type: "text", text: "Hello there!" });
   }
