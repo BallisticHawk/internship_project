@@ -46,11 +46,22 @@ export default function Home() {
   );
 }
 
+declare global {
+  interface Window {
+    botpressWebChat: BotpressWebChatMethods; // Use your custom type
+  }
+}
 
+// Define a custom type for the botpressWebChat methods
+interface BotpressWebChatMethods {
+  sendEvent: (event: { type: string }) => void;
+  sendPayload: (payload: { type: string, text: string }) => void;
+}
 
-export function trigger(): void {
-  if (typeof window !== 'undefined' && (window as any).botpressWebChat) {
-    const botpressWebChat = (window as any).botpressWebChat;
+function trigger(): void {
+  if (typeof window !== 'undefined' && window.botpressWebChat) {
+    const botpressWebChat = window.botpressWebChat as BotpressWebChatMethods;
+
     botpressWebChat.sendEvent({ type: "show" });
     botpressWebChat.sendPayload({ type: "text", text: "Hello there!" });
   }
