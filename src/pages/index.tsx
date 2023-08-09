@@ -1,8 +1,13 @@
 import Head from "next/head";
 import Link from "next/link";
+import {useEffect} from 'react';
 
 export default function Home() {
-  trigger();
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      trigger(); // Call the trigger function on the client side
+    }
+  }, []);
   return (
     <>
       <Head>
