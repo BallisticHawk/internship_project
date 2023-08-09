@@ -2,6 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useEffect } from 'react';
 
+
 export default function Home() {
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -51,19 +52,19 @@ export default function Home() {
   );
 }
 
+interface BotpressWebChatMethods {
+  sendEvent: (event: { type: string }) => void;
+  sendPayload: (payload: { type: string, text: string }) => void;
+}
+
 declare global {
   interface Window {
     botpressWebChat?: BotpressWebChatMethods;
   }
 }
 
-interface BotpressWebChatMethods {
-  sendEvent: (event: { type: string }) => void;
-  sendPayload: (payload: { type: string, text: string }) => void;
-}
-
 function trigger(): void {
-  if (typeof window !== 'undefined' && window.botpressWebChat) {
+  if (window?.botpressWebChat) {
     window.botpressWebChat?.sendEvent?.({ type: "show" });
     window.botpressWebChat?.sendPayload?.({ type: "text", text: "Hello there!" });
   }
