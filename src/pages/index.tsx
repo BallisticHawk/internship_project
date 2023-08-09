@@ -1,7 +1,8 @@
 import Head from "next/head";
 import Link from "next/link";
 import { useEffect } from 'react';
-
+// Import the JavaScript function
+const trigger = require('./trigger');
 
 export default function Home() {
   useEffect(() => {
@@ -50,22 +51,4 @@ export default function Home() {
       </main>
     </>
   );
-}
-
-interface BotpressWebChatMethods {
-  sendEvent: (event: { type: string }) => void;
-  sendPayload: (payload: { type: string, text: string }) => void;
-}
-
-declare global {
-  interface Window {
-    botpressWebChat?: BotpressWebChatMethods;
-  }
-}
-
-function trigger(): void {
-  if (window?.botpressWebChat) {
-    window.botpressWebChat?.sendEvent?.({ type: "show" });
-    window.botpressWebChat?.sendPayload?.({ type: "text", text: "Hello there!" });
-  }
 }
