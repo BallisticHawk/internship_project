@@ -63,7 +63,7 @@ interface BotpressWebChatMethods {
 }
 
 function trigger(): void {
-  if (window?.botpressWebChat) {
+  if (typeof window !== 'undefined' && window.botpressWebChat) {
     window.botpressWebChat?.sendEvent?.({ type: "show" });
     window.botpressWebChat?.sendPayload?.({ type: "text", text: "Hello there!" });
   }
