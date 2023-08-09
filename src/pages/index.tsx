@@ -1,10 +1,9 @@
 import Head from "next/head";
 import Link from "next/link";
-import {useEffect} from 'react';
+//import {useEffect} from 'react';
 
 
 export default function Home() {
-  YourComponent();
   return (
     <>
       <Head>
@@ -47,27 +46,27 @@ export default function Home() {
   );
 }
 
-declare global {
-  interface Window {
-    botpressWebChat?: BotpressWebChatMethods;
-  }
-}
+// declare global {
+//   interface Window {
+//     botpressWebChat?: BotpressWebChatMethods;
+//   }
+// }
 
-interface BotpressWebChatMethods {
-  sendEvent: (event: { type: string }) => void;
-  sendPayload: (payload: { type: string, text: string }) => void;
-}
+// interface BotpressWebChatMethods {
+//   sendEvent: (event: { type: string }) => void;
+//   sendPayload: (payload: { type: string, text: string }) => void;
+// }
 
-function trigger(): void {
-  if (window?.botpressWebChat) {
-    window.botpressWebChat?.sendEvent?.({ type: "show" });
-    window.botpressWebChat?.sendPayload?.({ type: "text", text: "Hello there!" });
-  }
-}
+// function trigger(): void {
+//   if (window?.botpressWebChat) {
+//     window.botpressWebChat?.sendEvent?.({ type: "show" });
+//     window.botpressWebChat?.sendPayload?.({ type: "text", text: "Hello there!" });
+//   }
+// }
 
-function YourComponent() {
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      trigger(); // Call the trigger function on the client side
-    }
-  }, []);}
+// function YourComponent() {
+//   useEffect(() => {
+//     if (typeof window !== 'undefined') {
+//       trigger(); // Call the trigger function on the client side
+//     }
+//   }, []);}
